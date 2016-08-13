@@ -1,0 +1,19 @@
+{
+  "name": "node-wechat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "crypto": "0.0.3",
+    "express": "^4.14.0",
+    "express-handlebars": "^3.0.0",
+    "request": "^2.74.0",
+    "wechat-api": "^1.28.0",
+    "weixin-robot": "^0.5.10"
+  }
+}
