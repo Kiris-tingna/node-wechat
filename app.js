@@ -1,10 +1,10 @@
 'use strict';
 var express = require('express');
-var app = express();
 var webot = require('weixin-robot');
 var weapi = require('wechat-api');
-
 var config = require('./config/weixin.js');
+var menu = require('./config/menu.js');
+var app = express();
 
 // --------------------- view engine ------------------------
 var handlebars = require('express-handlebars').create({
@@ -31,8 +31,12 @@ var api = new weapi(config.appid, config.appsecret);
 require('./rules')(webot);
 webot.watch(app, {token: config.token, path: '/wechat'});
 
+// 创建菜单
+api.createMenu(menu, null);
+
 // js sdk内页
 require('./routes/jssdk.js')(app, api);
+
 
 app.listen(app.get('port'), function () {
     console.log('Express started at http://localhost:' + app.get('port'));
@@ -41,6 +45,3 @@ app.listen(app.get('port'), function () {
 // use nginx
 // app.set('port', 3000);
 // app.enable('trust proxy');
-
-// var wx  = require('./routes/wx.js');// 路由配置
-// wx(app);// 微信验证
